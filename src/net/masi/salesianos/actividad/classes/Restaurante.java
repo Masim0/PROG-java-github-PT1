@@ -1,12 +1,12 @@
-package net.masi.salesianos.actividad;
+package net.masi.salesianos.actividad.classes;
 
 public class Restaurante {
     private String name;
     private String location;
     private Schedule schedule;
-    private double rate;
+    private String rate;
 
-    public Restaurante(String name, String location, Schedule schedule, double rate) {
+    public Restaurante(String name, String location, Schedule schedule, String rate) {
         this.name = name;
         this.location = location;
         this.schedule = schedule;
@@ -25,7 +25,7 @@ public class Restaurante {
         return schedule;
     }
 
-    public double getRate() {
+    public String getRate() {
         return rate;
     }
 
@@ -41,8 +41,18 @@ public class Restaurante {
         this.schedule = schedule;
     }
 
-    public void setRate(double rate) {
+    public void setRate(String rate) {
         this.rate = rate;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurante{" +
+                "name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", schedule=" + schedule.toString() +
+                ", rate='" + rate + '\'' +
+                '}';
     }
 
 }
