@@ -57,6 +57,8 @@ public class App {
         panel.add(addButton);
 
         frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }
