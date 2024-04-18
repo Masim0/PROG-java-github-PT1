@@ -1,25 +1,15 @@
 package net.masi.salesianos.actividad;
 
 public class Schedule {
-    private String day;
     private String openingTime;
     private String closingTime;
 
-    public Schedule(String day, String openingTime, String closingTime) {
-        this.day = day;
+    public Schedule( String openingTime, String closingTime) {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
     }
 
     public Schedule() {
-    }
-
-    public String getDay() {
-        return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
     }
 
     public String getOpeningTime() {
@@ -36,5 +26,13 @@ public class Schedule {
 
     public void setClosingTime(String closingTime) {
         this.closingTime = closingTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "openingTime='" + openingTime + '\'' +
+                ", closingTime='" + closingTime + '\'' +
+                '}';
     }
 }
