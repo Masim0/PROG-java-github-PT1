@@ -1,4 +1,4 @@
-package net.masi.salesianos.actividad;
+package net.masi.salesianos.actividad.classes;
 
 public class Restaurante {
     private String name;

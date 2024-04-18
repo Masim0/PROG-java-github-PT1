@@ -1,5 +1,4 @@
-import net.masi.salesianos.actividad.Restaurante;
-import net.masi.salesianos.actividad.Schedule;
+import net.masi.salesianos.actividad.classes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +10,42 @@ public class App {
     private static ArrayList<Restaurante> restaurantes = new ArrayList<>();
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Agregar Restaurante");
+        InterfazUsuario ui = new InterfazUsuario();
+        ui.crearInterfaz();
+    }
+
+    public static void agregarRestaurante(String name, String location, String schedule, String rate) {
+        String openingTime = schedule.split("-")[0].trim();
+        String closingTime = schedule.split("-")[1].trim();
+        Restaurante restaurante = new Restaurante(name, location, new Schedule(openingTime, closingTime), rate);
+        restaurantes.add(restaurante);
+        System.out.println(restaurantes);
+    }
+}
+
+class InterfazUsuario {
+    private JFrame frame;
+    private JTextField nameField;
+    private JTextField locationField;
+    private JTextField scheduleField;
+    private JTextField rateField;
+
+    public void resetearFormulario() {
+        nameField.setText("");
+        locationField.setText("");
+        scheduleField.setText("");
+        rateField.setText("");
+    }
+
+    public void crearInterfaz() {
+        frame = new JFrame("Agregar Restaurante");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel(new GridLayout(5, 2));
 
-        JTextField nameField = new JTextField(20);
-        JTextField locationField = new JTextField(20);
-        JTextField scheduleField = new JTextField(20);
-        JTextField rateField = new JTextField(20);
+        nameField = new JTextField(20);
+        locationField = new JTextField(20);
+        scheduleField = new JTextField(20);
+        rateField = new JTextField(20);
 
         panel.add(new JLabel("Nombre:"));
         panel.add(nameField);
@@ -34,22 +61,11 @@ public class App {
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
                 String location = locationField.getText();
-
-                String openingTime = scheduleField.getText().split("-")[0].trim();
-                String closingTime = scheduleField.getText().split("-")[1].trim();
-
+                String schedule = scheduleField.getText();
                 String rate = rateField.getText();
 
-                Restaurante restaurante = new Restaurante(name, location, new Schedule(openingTime, closingTime), rate);
-
-                restaurantes.add(restaurante);
-
-                System.out.println(restaurantes);
-
-                nameField.setText("");
-                locationField.setText("");
-                scheduleField.setText("");
-                rateField.setText("");
+                App.agregarRestaurante(name, location, schedule, rate);
+                resetearFormulario();
 
                 JOptionPane.showMessageDialog(frame, "Restaurante agregado correctamente.");
             }
